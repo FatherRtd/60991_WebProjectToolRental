@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 20 2022 г., 17:07
+-- Время создания: Фев 21 2022 г., 09:20
 -- Версия сервера: 10.3.13-MariaDB
 -- Версия PHP: 7.1.22
 
@@ -64,8 +64,8 @@ CREATE TABLE `rental_order` (
   `id` int(10) UNSIGNED NOT NULL COMMENT 'Индекс заказа',
   `user_id` int(10) UNSIGNED NOT NULL COMMENT 'Индекс пользователя',
   `product_id` int(10) UNSIGNED NOT NULL COMMENT 'Индекс товара',
-  `order_date` date NOT NULL COMMENT 'Дата заказа',
-  `rental_time` int(10) UNSIGNED NOT NULL COMMENT 'Время аренды',
+  `order_date` datetime NOT NULL COMMENT 'Дата и время начала аренды',
+  `order_end_date` datetime NOT NULL COMMENT 'Дата и время окончания аренды',
   `rental_price` int(10) UNSIGNED NOT NULL COMMENT 'Цена аренды'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Информация о заказе' ROW_FORMAT=COMPACT;
 
