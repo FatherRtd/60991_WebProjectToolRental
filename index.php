@@ -1,33 +1,34 @@
 <?php
-    require __DIR__ . '/vendor/autoload.php';
-    use Dotenv\Dotenv;
-    if(file_exists(__DIR__."/.env"))
-    {
-        $dotenv = Dotenv::createImmutable(__DIR__);
-        $dotenv->load();
-    }
-
-    $host = $_ENV['host'];
-    $db = $_ENV['database'];
-    $user = $_ENV['user'];
-    $pass = $_ENV['password'];
-
-    try {
-        $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-    }
+    require "dbconnect.php";
 
     echo ("<table border='1'>");
-    $result = $conn->query("SELECT * FROM user");
+    $result = $conn->query("SELECT * FROM category");
     while($row = $result->fetch())
     {
         echo '<tr>';
-        echo '<td>'.$row['id'].'</td><td>'.$row['firstname'].' '.$row['lastname'].'</td>';
+        echo '<td>' . $row['id'] . '</td><td>' . $row['name'] . '</td><td>' . $row['description'] . '</td>';
+        $parent_name = $conn->query("SELECT name FROM category WHERE id ='{$row['parent_id']}'");
+        $row1 = $parent_name->fetch();
+        echo '<td>'.$row1['name'].'</td>';
+        echo '<td><a href=deletecategory.php?id=' . $row['id'] . '>Удалить</a><td/>';
         echo '</tr>';
     }
     echo ("</table>");
-
 ?>
+
+<h1>Добавление категории</h1>
+<form method="get" action="insertcategory.php">
+    <input type="text" name="name">
+    <input type="text" name="description">
+    <select name="parent_id">
+        <option value="NULL">NULL</option>
+        <?php
+        $result = $conn->query("SELECT * FROM category");
+        while($row = $result->fetch())
+        {
+            echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+        }
+        ?>
+    </select>
+    <input type="submit" value="Добавить">
+</form>
