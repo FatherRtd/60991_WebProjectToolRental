@@ -1,26 +1,27 @@
 <?php
     require "dbconnect.php";
 
-    try{
-        $sql = 'INSERT INTO category(name, description, parent_id) VALUES(:name, :description, :parent_id)';
-        $stmt = $conn->prepare($sql);
+    if(strlen($_GET['name']) >= 3)
+    {
+        try{
+            $sql = 'INSERT INTO category(name, description, parent_id) VALUES(:name, :description, :parent_id)';
+            $stmt = $conn->prepare($sql);
 
-        $stmt->bindValue(':name', $_GET['name']);
-        $stmt->bindValue(':description', $_GET['description']);
+            $stmt->bindValue(':name', $_GET['name']);
+            $stmt->bindValue(':description', $_GET['description']);
+            $stmt->bindValue(':parent_id', $_GET['parent_id'] != 'NULL'? $_GET['parent_id'] : Null);
+            $stmt->execute();
 
-        if($_GET['parent_id'] != 'NULL')
-        {
-            $stmt->bindValue(':parent_id', $_GET['parent_id']);
+            $_SESSION['msg'] = "Категория добавлена.";
+
+        }catch (PDOException $error) {
+            $_SESSION['msg'] = "Ошибка: " . $error->getMessage();
         }
-        else
-        {
-            $stmt->bindValue(':parent_id', Null);
-        }
-        $stmt->execute();
-        echo("Категория добавлена.");
-
-    }catch (PDOException $error) {
-        echo("Ошибка: " . $error->getMessage());
     }
+    else
+    {
+        $_SESSION['msg'] = "Ошибка: Имя категории должно содержать не менее 3х символов.";
+    }
+
     header('Location:http://toolrental');
     exit();

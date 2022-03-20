@@ -7,10 +7,10 @@
 
         $stmt->bindValue(':id', $_GET['id']);
         $stmt->execute();
-        echo("Категория удалена.");
+        $_SESSION['msg'] = "Категория удалена.";
 
     }catch (PDOException $error){
-        echo ("Ошибка: ".$error->getMessage());
+        $_SESSION['msg'] = "Ошибка: ".$error->getMessage();
     }
     header('Location:http://toolrental');
     exit();
