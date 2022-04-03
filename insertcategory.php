@@ -23,5 +23,5 @@
         $_SESSION['msg'] = "Ошибка: Имя категории должно содержать не менее 3х символов.";
     }
 
-    header('Location:http://toolrental');
+    header('Location:http://toolrental/index.php?page=cat');
     exit();
