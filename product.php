@@ -1,5 +1,5 @@
 <div style="display: flex; margin-top: 80px">
-    <div style="width: 30%">
+    <div style="width: 20%">
         <div class="accordion" id="accordionExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
@@ -39,37 +39,27 @@
             </div>
         </div>
     </div>
-    <div style="width: 70%">
+    <div style="width: 80%;">
         <h1 style="text-align: center">Инструменты</h1>
-        <table class="table" style="width: 80%; margin: 0 auto">
-            <tr>
-                <th>id</th>
-                <th>Название</th>
-                <th>Краткое описание</th>
-                <th>Описание</th>
-                <th>Стоимость аренды</th>
-                <th>Минимальное время аренды</th>
-                <th>В наличии</th>
-                <th>Категория</th>
-                <th>Изображение</th>
-                <?php if(isset($_SESSION['login']) && $_SESSION['is_admin'] == 1):?>
-                    <th>Удалить товар</th>
-                <?php endif?>
-            </tr>
+        <div style="display: grid; grid-template-columns: repeat(4, 300px); grid-column-gap: 20px; grid-row-gap: 20px; justify-content: center">
             <?php
             $result = $conn->query("SELECT product.id pID, product.name pName, product.short_description pSD, product.long_description pLD, product.rental_price pRP, product.is_in_stock pIIS, product.min_rental_time pMRT, product.image pImg, category.name cName FROM product, category WHERE product.category_id = category.id");
             while($row = $result->fetch())
             {
-                echo $row['pI'];
-                echo '<td>' . $row['pID'] . '</td><td>' . $row['pName'] . '</td><td>' . $row['pSD'] . '</td>';
-                echo '<td>' . $row['pLD'] . '</td><td>' . $row['pRP'] . '</td><td>' . $row['pMRT']. '</td>';
-                echo '<td>' . $row['pIIS'] . '</td><td>' . $row['cName'] . '</td><td><img src="' . $row['pImg']. '"/></td>';
+                echo '<div class="card" style="width: 300px;">';
+                echo '<img src="'. $row['pImg'].'" class="card-img-top" style="height: 300px" alt="...">';
+                echo '<div class="card-body">';
+                echo '<h5 class="card-title">'.$row['pName'].'</h5>';
+                echo '<p class="card-text">'.$row['pSD'].'</p>';
+                echo '<a href="#" class="btn btn-primary" style="display: block; margin-bottom: 10px; width: 100px">В корзину</a>';
                 if(isset($_SESSION['login']) && $_SESSION['is_admin'] == 1)
-                    echo '<td><a href=deleteproduct.php?id=' . $row['pID'] . '>Удалить</a><td/>';
-                echo '</tr>';
+                    echo '<a class="btn btn-primary" style="width: 100px" href=deleteproduct.php?id='. $row['pID'].'>Удалить</a>';
+                echo '</div>';
+                echo '</div>';
             }
             ?>
-        </table>
+        </div>
+
         <?php if(isset($_SESSION['login']) && $_SESSION['is_admin'] == 1):?>
             <h1>Добавление товара</h1>
             <form method="get" action="insertproduct.php">
