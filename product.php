@@ -62,7 +62,7 @@
 
         <?php if(isset($_SESSION['login']) && $_SESSION['is_admin'] == 1):?>
             <h1>Добавление товара</h1>
-            <form method="get" action="insertproduct.php">
+            <form method="post" action="insertproduct.php" enctype="multipart/form-data">
                 <input type="text" placeholder="Название" name="name">
                 <input type="text" placeholder="Краткое описание" name="short_description">
                 <input type="text" placeholder="Описание" name="description">
@@ -81,7 +81,7 @@
                     }
                     ?>
                 </select>
-                <input type="text" placeholder="Изображение" name="image">
+                <input type="file" placeholder="Изображение" name="image">
                 <input type="submit" value="Добавить">
             </form>
         <?php endif ?>
