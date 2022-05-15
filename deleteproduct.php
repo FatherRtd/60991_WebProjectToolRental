@@ -19,5 +19,5 @@ try{
 }catch (PDOException $error){
     $_SESSION['msg'] = "Ошибка: ".$error->getMessage();
 }
-header('Location:http://toolrental/index.php?page=prod');
+header('Location:http://toolrental/index.php');
 exit();

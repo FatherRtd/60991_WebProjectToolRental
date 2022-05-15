@@ -3,7 +3,7 @@
     if(isset($_POST["login"]) and $_POST["login"]!='')
     {
         try{
-            $sql = "SELECT firstname, lastname, md5password, is_admin FROM user WHERE login=(:login)";
+            $sql = "SELECT id , firstname, lastname, md5password, is_admin FROM user WHERE login=(:login)";
             $stmt = $conn->prepare($sql);
 
             $stmt->bindValue(':login', $_POST['login']);
@@ -18,6 +18,7 @@
             if(MD5($_POST["password"]) != $row['md5password']) $_SESSION['msg'] = "Неверный пароль!";
             else
             {
+                $_SESSION['user_id'] = $row['id'];
                 $_SESSION['login'] = $_POST["login"];
                 $_SESSION['firstname'] = $row['firstname'];
                 $_SESSION['lastname'] = $row['lastname'];

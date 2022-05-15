@@ -18,7 +18,7 @@ else{
 if(strlen($_POST['name']) >= 3)
 {
     try{
-        $sql = 'INSERT INTO product(name, short_description, long_description, rental_price, is_in_stock, quantity, min_rental_time, image, category_id) VALUES(:name, :short_description, :long_description, :rental_price,:is_in_stock,:quantity,:min_rental_time,:image,:category_id)';
+        $sql = 'INSERT INTO product(name, short_description, long_description, rental_price, is_in_stock, image, category_id) VALUES(:name, :short_description, :long_description, :rental_price,:is_in_stock,:image,:category_id)';
         $stmt = $conn->prepare($sql);
 
         $stmt->bindValue(':name', $_POST['name']);
@@ -26,8 +26,6 @@ if(strlen($_POST['name']) >= 3)
         $stmt->bindValue(':long_description', $_POST['description']);
         $stmt->bindValue(':rental_price', $_POST['rental_price']);
         $stmt->bindValue(':is_in_stock', $_POST['is_in_stock']);
-        $stmt->bindValue(':quantity', 10);
-        $stmt->bindValue(':min_rental_time', $_POST['min_rental_time']);
         $stmt->bindValue(':image', $picture_url);
         $stmt->bindValue(':category_id', $_POST['category_id']);
         $stmt->execute();
@@ -43,5 +41,5 @@ else
     $_SESSION['msg'] = "Ошибка: Название товара должно содержать не менее 3х символов.";
 }
 
-header('Location:http://toolrental/index.php?page=prod');
+header('Location:http://toolrental/index.php');
 exit();

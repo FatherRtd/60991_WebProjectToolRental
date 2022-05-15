@@ -2,12 +2,14 @@
     require "dbconnect.php";
     require "auth.php";
     require "login_menu.php";
-    switch ($_GET['page'])
-    {
-        case 'cat':
-            require "categories.php";
+    switch ($_GET['page']) {
+        case 'product':
+            require "productpage.php";
             break;
-        case 'prod':
+        case 'orders':
+            require "orderspage.php";
+            break;
+        default:
             require "product.php";
             break;
     }

@@ -1,65 +1,23 @@
 <div style="display: flex; margin-top: 80px">
-    <div style="width: 20%">
-        <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Элемент аккордеона #1
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <strong>123</strong>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Элемент аккордеона #2
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <strong>123</strong>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Элемент аккордеона #3
-                    </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <strong>123</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div style="width: 80%;">
+    <div style="width: 100%;">
         <h1 style="text-align: center">Инструменты</h1>
         <div style="display: grid; grid-template-columns: repeat(4, 300px); grid-column-gap: 20px; grid-row-gap: 20px; justify-content: center">
             <?php
-            $result = $conn->query("SELECT product.id pID, product.name pName, product.short_description pSD, product.long_description pLD, product.rental_price pRP, product.is_in_stock pIIS, product.min_rental_time pMRT, product.image pImg, category.name cName FROM product, category WHERE product.category_id = category.id");
+            $result = $conn->query("SELECT product.id pID, product.name pName, product.short_description pSD, product.long_description pLD, product.rental_price pRP, product.is_in_stock pIIS, product.image pImg, category.name cName FROM product, category WHERE product.category_id = category.id and product.is_in_stock = 1");
             while($row = $result->fetch())
             {
                 echo '<div class="card" style="width: 300px;">';
-                echo '<img src="'. $row['pImg'].'" class="card-img-top" style="height: 300px" alt="...">';
+                echo '<a href="http://toolrental/index.php?page=product&id='.$row['pID'].'">';
+                echo '<img src="'. $row['pImg'].'" class="card-img-top" style="height: 300px" alt="..."></a>';
                 echo '<div class="card-body">';
                 echo '<h5 class="card-title">'.$row['pName'].'</h5>';
                 echo '<p class="card-text">'.$row['pSD'].'</p>';
-                echo '<a href="#" class="btn btn-primary" style="display: block; margin-bottom: 10px; width: 100px">В корзину</a>';
                 if(isset($_SESSION['login']) && $_SESSION['is_admin'] == 1)
                     echo '<a class="btn btn-primary" style="width: 100px" href=deleteproduct.php?id='. $row['pID'].'>Удалить</a>';
-                echo '</div>';
-                echo '</div>';
+                echo '</div></div>';
             }
             ?>
         </div>
-
         <?php if(isset($_SESSION['login']) && $_SESSION['is_admin'] == 1):?>
             <h1>Добавление товара</h1>
             <form method="post" action="insertproduct.php" enctype="multipart/form-data">
@@ -82,6 +40,24 @@
                     ?>
                 </select>
                 <input type="file" placeholder="Изображение" name="image">
+                <input type="submit" value="Добавить">
+            </form>
+        <?php endif ?>
+        <?php if(isset($_SESSION['login']) && $_SESSION['is_admin'] == 1):?>
+            <h1>Добавление категории</h1>
+            <form method="get" action="insertcategory.php">
+                <input type="text" name="name">
+                <input type="text" name="description">
+                <select name="parent_id">
+                    <option value="NULL">NULL</option>
+                    <?php
+                    $result = $conn->query("SELECT * FROM category");
+                    while($row = $result->fetch())
+                    {
+                        echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+                    }
+                    ?>
+                </select>
                 <input type="submit" value="Добавить">
             </form>
         <?php endif ?>
