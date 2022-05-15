@@ -8,7 +8,7 @@
     <header class="container">
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-black" style="min-height: 70px">
             <div class="container-fluid">
-                <a class="navbar-brand" href="http://toolrental/index.php?page=main">ToolRental</a>
+                <a class="navbar-brand" href="https://toolrentalproject.herokuapp.com/index.php?page=main">ToolRental</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
