@@ -33,6 +33,6 @@
     {
         session_unset();
         $_SESSION['msg'] = "Вы вышли из системы.";
-        header('Location:http://toolrental');
+        header("Location: ".$_SERVER['HTTP_REFERER']);
         exit();
     }
