@@ -25,7 +25,6 @@
                 <input type="text" placeholder="Краткое описание" name="short_description">
                 <input type="text" placeholder="Описание" name="description">
                 <input type="text" placeholder="Стоимость аренды" name="rental_price">
-                <input type="text" placeholder="Минимальное время аренды" name="min_rental_time">
                 <select name="is_in_stock">
                     <option value="1">В наличии</option>
                     <option value="0">Нет в наличии</option>
