@@ -31,7 +31,7 @@
                     else
                     {
                         echo '<a class="nav-link" style="color: white" href="#">Привет, '.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</a>';
-                        echo '<a class="btn btn-outline-success my-2 my-sm-0" href="?logout=1">Выйти</a>';
+                        echo '<a class="btn btn-outline-success my-2 my-sm-0" href="https://toolrentalproject.herokuapp.com/?logout=1">Выйти</a>';
                     }
                     ?>
                 </div>
