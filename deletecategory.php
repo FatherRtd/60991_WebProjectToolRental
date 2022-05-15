@@ -12,5 +12,5 @@
     }catch (PDOException $error){
         $_SESSION['msg'] = "Ошибка: ".$error->getMessage();
     }
-    header('Location:http://toolrental/index.php?page=main');
+    header("Location: ".$_SERVER['HTTP_REFERER']);
     exit();

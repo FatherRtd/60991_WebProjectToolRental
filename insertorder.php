@@ -33,5 +33,5 @@ else
     $_SESSION['msg'] = "Ошибка: Неверно выбрана дата окончания аренды.";
 }
 
-header('Location:http://toolrental/index.php');
+header("Location: ".$_SERVER['HTTP_REFERER']);
 exit();
