@@ -41,5 +41,5 @@ else
     $_SESSION['msg'] = "Ошибка: Название товара должно содержать не менее 3х символов.";
 }
 
-header("Location: ".$_SERVER['HTTP_REFERER']);
+header('Location:https://toolrentalproject.herokuapp.com/index.php');
 exit();

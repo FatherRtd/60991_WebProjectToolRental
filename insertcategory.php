@@ -23,5 +23,5 @@
         $_SESSION['msg'] = "Ошибка: Имя категории должно содержать не менее 3х символов.";
     }
 
-header("Location: ".$_SERVER['HTTP_REFERER']);
+    header('Location:https://toolrentalproject.herokuapp.com/index.php');
     exit();

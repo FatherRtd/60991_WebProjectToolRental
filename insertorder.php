@@ -33,5 +33,5 @@ else
     $_SESSION['msg'] = "Ошибка: Неверно выбрана дата окончания аренды.";
 }
 
-header("Location: ".$_SERVER['HTTP_REFERER']);
+header('Location:https://toolrentalproject.herokuapp.com/index.php');
 exit();
