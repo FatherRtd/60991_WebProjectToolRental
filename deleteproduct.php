@@ -19,5 +19,5 @@ try{
 }catch (PDOException $error){
     $_SESSION['msg'] = "Ошибка: ".$error->getMessage();
 }
-header('Location:https://toolrentalproject.herokuapp.com/index.php');
+header('Location:index.php');
 exit();

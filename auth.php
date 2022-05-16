@@ -33,6 +33,6 @@
     {
         session_unset();
         $_SESSION['msg'] = "Вы вышли из системы.";
-        header('Location:https://toolrentalproject.herokuapp.com/index.php');
+        header('Location:index.php');
         exit();
     }

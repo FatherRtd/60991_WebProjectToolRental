@@ -7,7 +7,7 @@
             while($row = $result->fetch())
             {
                 echo '<div class="card" style="width: 300px;">';
-                echo '<a href="https://toolrentalproject.herokuapp.com/index.php?page=product&id='.$row['pID'].'">';
+                echo '<a href="index.php?page=product&id='.$row['pID'].'">';
                 echo '<img src="'. $row['pImg'].'" class="card-img-top" style="height: 300px" alt="..."></a>';
                 echo '<div class="card-body">';
                 echo '<h5 class="card-title">'.$row['pName'].'</h5>';
