@@ -13,14 +13,11 @@
     <div style="margin-top: 20px; display: flex">
         <img src="<?php echo $row['image']?>" style="height: 300px">
         <div style="margin-left: 20px">
-            <h3>Цена аренды: <?php echo $row['rental_price']?>руб</h3>
-            <h3>Минимальный срок аренды: <?php echo $row['min_rental_time']?> день</h3>
+            <h3>Стоимость аренды: <?php echo $row['rental_price']?> руб</h3>
             <form method="post" action="insertorder.php" enctype="multipart/form-data">
                 <input type="hidden" name="product_id" value="<?php echo $row['id']?>">
                 <input type="hidden" name="rental_price" value="<?php echo $row['rental_price']?>">
-                <label for="endDate">Арендовать до</label>
-                <input id="endDate" class="form-control" type="date" name="end_date"/>
-                <input type="submit" value="Арендовать">
+                <button type="submit" class="btn btn-primary">Арендовать</button>
             </form>
         </div>
     </div>

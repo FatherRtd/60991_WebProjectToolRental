@@ -9,7 +9,15 @@
         case 'orders':
             require "orderspage.php";
             break;
+        case 'admin':
+            require "adminpage.php";
+            break;
+        case 'main':
+            require "categories.php";
+            require "product.php";
+            break;
         default:
+            require "categories.php";
             require "product.php";
             break;
     }

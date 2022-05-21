@@ -20,6 +20,12 @@
                                     echo '<a class="nav-link" href="index.php?page=orders">Товары в аренде</a>';
                             ?>
                         </li>
+                        <li class="nav-item">
+                            <?php
+                            if(isset($_SESSION['login']) && $_SESSION['is_admin'] == 1)
+                                echo '<a class="nav-link" href="index.php?page=admin">Добавление товаров</a>';
+                            ?>
+                        </li>
                     </ul>
 
                     <?php
