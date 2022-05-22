@@ -36,6 +36,7 @@
                         echo "<input class='form-control me-2' placeholder='Пароль' type='password' name='password'/></br>";
                         echo "<input type='submit' value='Войти'>";
                         echo "</form>";
+                        echo '<a class="btn btn-primary" style="margin-left: 20px;" href=index.php?page=registration>Регистрация</a>';
                     }
                     else
                     {

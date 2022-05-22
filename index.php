@@ -16,6 +16,9 @@
             require "categories.php";
             require "product.php";
             break;
+        case 'registration':
+            require "registration.php";
+            break;
         default:
             require "categories.php";
             require "product.php";
