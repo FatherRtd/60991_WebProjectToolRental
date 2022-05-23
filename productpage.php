@@ -17,7 +17,10 @@
             <form method="post" action="insertorder.php" enctype="multipart/form-data">
                 <input type="hidden" name="product_id" value="<?php echo $row['id']?>">
                 <input type="hidden" name="rental_price" value="<?php echo $row['rental_price']?>">
-                <button type="submit" class="btn btn-primary">Арендовать</button>
+                <?php
+                    if(isset($_SESSION['login']))
+                        echo '<button type="submit" class="btn btn-primary">Арендовать</button>';
+                ?>
             </form>
         </div>
     </div>
